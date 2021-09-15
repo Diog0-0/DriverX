@@ -59,4 +59,4 @@ buck-out/
 /ios/Pods/
 
 #!important key clound
-/andoid/app/src/main/AndoidManifest.xml
+andoid/app/src/main/AndroidManifest.xml
