@@ -57,3 +57,6 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+#!important key clound
+andoid/app/src/main/AndoidManifest.xml
