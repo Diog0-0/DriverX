@@ -3,7 +3,7 @@ import theme from './theme.json';
 //react maps ---->
 import MapView from 'react-native-maps';
 //react maps <----
-
+import Pulse from 'react-native-pulse';
 //como uma div
 export const Container = styled.View`
   flex: 1;
@@ -19,7 +19,7 @@ export const Container = styled.View`
   position: ${props => props.position || 'relative'};
   top: ${props => props.top || 0};
   z-index: ${props => props.zIndex || 1};
-  border: ${props => props.border || 'transparent'};
+  border: ${props => props.border || '0px'};
 `;
 
 //button
@@ -101,4 +101,23 @@ export const Avatar = styled.Image.attrs({elevation: 50})`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background: ${theme.color.muted};
   border-radius: ${props => (props.small ? '35px' : '50px')};
+  justify-content: ${props => props.justify || 'center'};
 `;
+
+export const VerticalSeparator = styled.View`
+  width: 1px;
+  height: 100%;
+  background-color: ${theme.color.muted};
+`;
+
+export const Bullet = styled.View`
+  margin-top: 2px;
+  width: 7px;
+  height: 7px;
+  border-radius: 7px;
+  background: ${props => (props.destination ? '#FF2929' : '#00EB5E')};
+`;
+
+export const PulseCircle = styled(Pulse).attrs({
+  color: theme.color.primary,
+})``;

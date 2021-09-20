@@ -1,11 +1,17 @@
+import React from 'react';
 import {AppRegistry} from 'react-native';
 import {name as appName} from './app.json';
+/*Redux*/
+import {Provider} from 'react-redux';
+import store from './src/store/index';
+/*Routes */
+import Routes from './src/routes';
 
-import Login from './src/pages/Login';
-import Type from './src/pages/Steps/type';
-import Car from './src/pages/Steps/car';
-import Payment from './src/pages/Steps/payment';
-import Ride from './src/pages/Ride';
-import Home from './src/pages/Home';
-
-AppRegistry.registerComponent(appName, () => Home);
+const App = () => {
+  return (
+    <Provider store={store}>
+      <Routes />
+    </Provider>
+  );
+};
+AppRegistry.registerComponent(appName, () => App);

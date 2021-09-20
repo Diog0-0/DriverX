@@ -60,3 +60,4 @@ buck-out/
 
 #!important key clound
 andoid/app/src/main/AndroidManifest.xml
+src/services/social.js
