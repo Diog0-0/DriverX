@@ -1,11 +1,46 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Image} from 'react-native';
-
+/*Service de login com facebook */
+import social from '../../services/social';
+import {useDispatch} from 'react-redux';
+import {updateUser} from '../../store/modules/app/actions';
+/*Assets */
 import logo from '../../assets/logo.png';
 import bgBottom from '../../assets/bg-bottom-login.png';
 
 import {Container, Button, ButtonText} from '../../styles/';
+import graph from '../../services/facebook';
+
 const Login = () => {
+  const dispatch = useDispatch();
+
+  const login = async () => {
+    try {
+      const auth = await social.authorize('facebook', {
+        scopes: 'email',
+      });
+
+      // const user = await social.makeRequest(
+      //   'facebook',
+      //   '/me?fields=id,name,email',
+      // );
+
+      const user = await graph.get(
+        `?me?fields=id,name,email&access_token=${auth.response.credentials.acessToken}`,
+      );
+      dispatch(
+        updateUser({
+          fbId: user.data.id,
+          name: user.data.name,
+          email: user.data.email,
+          acessToken: auth.response.credentials.acessToken,
+        }),
+      );
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
   return (
     <Container color="info50" justify="flex-end">
       <Container
@@ -16,7 +51,7 @@ const Login = () => {
         top={0}
         zIndex={9}>
         <Image source={logo} />
-        <Button type="info">
+        <Button onPress={() => login()} type="info">
           <ButtonText color="light">Fazer Login com facebook</ButtonText>
         </Button>
         <Button type="light">
